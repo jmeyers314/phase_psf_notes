@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathabx}
+\usepackage{commath}
+
+\geometry{textwidth=6.5in, textheight=9.0in,
+    marginparsep=7pt, marginparwidth=.6in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.08in}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand*{\annot}[1]{\tag*{\footnotesize{\textcolor{gray}{#1}}}}
+\newcommand{\like}{\mathcal{L}}
+\let\Pr\undefined
+\DeclareMathOperator{\Pr}{Pr}
+
+\title{Notes on Phase Screen PSFs}
+\author{Josh Meyers}
+\date{October 2016}
+
+\begin{document}
+
+\section{Fluctuation statistics}
+
+Mostly just going to steal the derivation in Roddier (1981), but try to make it self-comprehensible.
+
+Start with the 1D temperature power spectrum $\Phi_T(\kappa)$ of temperature fluctuations $\Theta =
+T - \langle T \rangle$:
+
+\begin{equation}
+    \Phi_T(\kappa)\, \propto\, \kappa^{-5/3}
+\end{equation}
+
+The (isotropic) 3D power spectrum is related to the 1D power spectrum by an integral over angles:
+\begin{equation}
+    \Phi_T(\kappa) = 4 \pi \kappa^2 \Phi_T(\bm{\kappa})
+\end{equation}
+
+Therefore
+
+\begin{equation}
+    \Phi_T(\bm{\kappa})\, \propto\, \kappa^{-11/3}
+\end{equation}
+
+The covariance of temperature fluctuations $B_T(\bm\rho) = \langle \Theta(\bm{r})
+\Theta(\bm{r}+\bm\rho)\rangle$ is, by Wiener-Khinchin, the 3D Fourier transform of the power
+spectrum:
+
+\begin{equation}
+    B_T(\bm\rho) = \int \Phi_T(\bm{\kappa}) \exp(i \bm\kappa \cdot \bm\rho) \dif\bm\kappa
+\end{equation}
+
+Unfortunately, that integral diverges at the origin, so it's instructive to instead consider the
+structure function defined
+
+\begin{equation}
+    D_T(\bm\rho) = \langle | \Theta(\bm{r} + \bm\rho) - \Theta(\bm{r})|^2\rangle
+\end{equation}
+
+which is related to the covariance by
+
+\begin{equation}
+    D_T(\bm\rho) = 2\left[B_T(0) - B_T(\bm\rho)\right]
+\end{equation}
+
+Can use dimensional considerations to show that $D_T(\bm\rho) \propto \rho^{2/3}$.  Write
+
+\begin{equation}
+    D_T(\bm\rho) = C^2_T \rho^{2/3}
+\end{equation}
+
+Then can show (Tatarski (1961)) that
+
+\begin{equation}
+    \Phi_T(\bm{\kappa}) = \frac{\Gamma(\frac{8}{3})\sin(\pi/3)}{4 \pi^2} C^2_T \kappa^{-11/3}
+\end{equation}
+
+The same math essentially applies to the power spectrum of refractive index fluctuations.
+
+\begin{equation}
+    \Phi_N(\bm{\kappa}) = \frac{\Gamma(\frac{8}{3})\sin(\pi/3)}{4 \pi^2} C^2_N \kappa^{-11/3}
+\end{equation}
+
+\end{document}
